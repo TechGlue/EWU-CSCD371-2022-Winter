@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
+/*ToDo: Part One: Deliver the questions in a random order  Part Two: Write a unit test for part one*/
 namespace PrincessBrideTrivia
 {
     public class Program
@@ -9,6 +11,7 @@ namespace PrincessBrideTrivia
         {
             string filePath = GetFilePath();
             Question[] questions = LoadQuestions(filePath);
+            questions = RandomizeQuestions(questions);
             
             int numberCorrect = 0;
             for (int i = 0; i < questions.Length; i++)
@@ -25,6 +28,17 @@ namespace PrincessBrideTrivia
         public static string GetPercentCorrect(int numberCorrectAnswers, int numberOfQuestions)
         {
             return (float) numberCorrectAnswers / (float) numberOfQuestions * 100 + "%";
+        }
+
+        public static Question[] RandomizeQuestions(Question[] questions)
+        {
+            if (questions.Length == 1)
+                return questions;
+            
+            Random random = new Random();
+            questions = questions.OrderBy(x => random.Next()).ToArray();
+
+            return questions;
         }
 
         public static bool AskQuestion(Question question)

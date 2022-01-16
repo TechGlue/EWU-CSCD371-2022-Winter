@@ -72,6 +72,22 @@ namespace PrincessBrideTrivia.Tests
             Assert.AreEqual(expectedString, percentage);
         }
 
+        [TestMethod]
+        public void RandomizeQuestions_GivenValidArray_ReturnsRandomizedArray()
+        {
+            //Arrange
+            Question[] questions = new Question[3];
+            Question[] questionsCpy = new Question[questions.Length];
+            
+            questions[0] = new Question {Text = "Question 0"};
+            questions[1] = new Question {Text = "Question 1"};
+            questions[2] = new Question {Text = "Question 2"};
+            questions.CopyTo(questionsCpy,0);
+            //Act 
+            questions = Program.RandomizeQuestions(questions);
+            //Assert
+            Assert.AreNotEqual(questionsCpy, questions);
+        }
 
         private static void GenerateQuestionsFile(string filePath, int numberOfQuestions)
         {
