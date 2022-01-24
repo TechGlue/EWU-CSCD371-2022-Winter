@@ -7,7 +7,6 @@ namespace Logger.Tests
     [TestClass]
     public class BaseLoggerMixinsTests
     {
-
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Error_WithNullLogger_ThrowsException()
@@ -29,7 +28,7 @@ namespace Logger.Tests
             var logger = new TestLogger();
 
             // Act
-            //logger.Error("Message {0}", 42);
+            logger.Error("Message {0}", 42);
 
             // Assert
             Assert.AreEqual(1, logger.LoggedMessages.Count);
