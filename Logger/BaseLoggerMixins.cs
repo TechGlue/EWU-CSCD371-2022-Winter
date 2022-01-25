@@ -7,10 +7,8 @@ namespace Logger
         public static void Error(string? message, BaseLogger logger, params object[] arguments)
         {
             if (logger is null)
-            {
                 throw new ArgumentNullException();
-            }
-
+            
             if (message != null)
             {
                 string messageAndArguments = string.Format(message, arguments);
@@ -18,35 +16,40 @@ namespace Logger
             }
         }
 
-        public static void Warning(string message, BaseLogger logger, params object[] arguments)
+        public static void Warning(string? message, BaseLogger logger, params object[] arguments)
         {
             if (logger is null)
-            {
                 throw new ArgumentNullException();
+
+            if (message != null)
+            {
+                string messageAndArguments = string.Format(message, arguments);
+                logger.Log(LogLevel.Warning, messageAndArguments);
             }
-            string messageAndArguments = string.Format(message, arguments);
-            logger.Log(LogLevel.Warning, messageAndArguments ); 
         }
 
-        public static void Debug(string message, BaseLogger logger, params object[] arguments)
+        public static void Debug(string? message, BaseLogger logger, params object[] arguments)
         {   
             if (logger is null)
-            {
                 throw new ArgumentNullException();
+
+            if (message != null)
+            {
+                string messageAndArguments = string.Format(message, arguments);
+                logger.Log(LogLevel.Debug, messageAndArguments);
             }
-            string messageAndArguments = string.Format(message, arguments);
-            logger.Log(LogLevel.Debug, messageAndArguments );    
         }
 
-        public static void Information(string message, BaseLogger logger, params object[] arguments)
+        public static void Information(string? message, BaseLogger logger, params object[] arguments)
         {  
             if (logger is null)
-            {
                 throw new ArgumentNullException();
+
+            if (message != null)
+            {
+                string messageAndArguments = string.Format(message, arguments);
+                logger.Log(LogLevel.Information, messageAndArguments);
             }
-            
-            string messageAndArguments = string.Format(message, arguments);
-            logger.Log(LogLevel.Information, messageAndArguments );
         }
     }
 }

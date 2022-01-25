@@ -8,16 +8,34 @@ namespace Logger.Tests
     public class BaseLoggerMixinsTests
     {
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void Error_WithNullLogger_ThrowsException()
         {
-            // Arrange
-            BaseLoggerMixins logger = new (null); 
-            // Act
-           
             // Assert
-            Assert.ThrowsException<ArgumentNullException>(() => BaseLoggerMixins.Error("", logger)); 
+            Assert.ThrowsException<ArgumentNullException>(() => BaseLoggerMixins.Error("",null!));
         }
+        
+        [TestMethod]
+        public void Warning_WithNullLogger_ThrowsException()
+        {
+            // Assert
+            Assert.ThrowsException<ArgumentNullException>(() => BaseLoggerMixins.Warning("",null!));
+        }
+        
+        [TestMethod]
+        public void Debug_WithNullLogger_ThrowsException()
+        {
+            // Assert
+            Assert.ThrowsException<ArgumentNullException>(() => BaseLoggerMixins.Debug("",null!));
+        }
+        
+        [TestMethod]
+        public void Information_WithNullLogger_ThrowsException()
+        {
+            // Assert
+            Assert.ThrowsException<ArgumentNullException>(() => BaseLoggerMixins.Information("",null!));
+        }
+
+
 
         [TestMethod]
         public void Error_WithData_LogsMessage()
