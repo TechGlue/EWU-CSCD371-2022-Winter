@@ -4,14 +4,18 @@ namespace Logger
 {
     public static class BaseLoggerMixins
     {
-        public static void Error(string message, BaseLogger logger, params object[] arguments)
+        public static void Error(string? message, BaseLogger logger, params object[] arguments)
         {
             if (logger is null)
             {
                 throw new ArgumentNullException();
             }
-            string messageAndArguments = string.Format(message, arguments);
-            logger.Log(LogLevel.Error, messageAndArguments );
+
+            if (message != null)
+            {
+                string messageAndArguments = string.Format(message, arguments);
+                logger.Log(LogLevel.Error, messageAndArguments );
+            }
         }
 
         public static void Warning(string message, BaseLogger logger, params object[] arguments)
