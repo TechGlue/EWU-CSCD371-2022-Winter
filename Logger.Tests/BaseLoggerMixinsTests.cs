@@ -13,7 +13,7 @@ namespace Logger.Tests
         {
             // Arrange
             
-            // BaseLoggerMixins logger = new (null);
+            BaseLoggerMixins logger = new (null);
             
             // Act
             BaseLoggerMixins.Error("", "");

@@ -20,17 +20,18 @@ namespace Logger
         {
            return $"{DateTime.Now:MM/dd/yyyy hh:mm:ss tt}\n{ClassName}\n{Status}\n{Message}";
         }
-        
+       
+        //ToDo: double check logic once all methods implemented. 
         public override void Log(LogLevel logLevel, string message)
         {
             Status = logLevel;
             Message = message;
             
             string? path = FilePath;
-            if (File.Exists(path)) return;
-            if (path == null) return;
+            if (!File.Exists(path)) return;
             using StreamWriter sw = File.CreateText(path);
             sw.WriteLine(ToText());
+            sw.Close();
         }
     }
 }

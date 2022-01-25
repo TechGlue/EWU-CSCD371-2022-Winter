@@ -9,7 +9,7 @@
         {
             ClassName = className;
         }
-        private void ConfigureFileLogger(string filePath)
+        public void ConfigureFileLogger(string filePath)
         {
            FilePath = filePath;
         }
