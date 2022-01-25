@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 
 namespace Logger
 {
@@ -15,14 +16,22 @@ namespace Logger
             FilePath = filePath;
         }
         
-        public string ToText()
+        private string ToText()
         {
-           return $"{DateTime.Now:MM/dd/yyyy hh:mm:ss tt} {ClassName} {Status} {Message}";
+           return $"{DateTime.Now:MM/dd/yyyy hh:mm:ss tt}\n{ClassName}\n{Status}\n{Message}";
         }
-        
+       
+        //ToDo: double check logic once all methods implemented. 
         public override void Log(LogLevel logLevel, string message)
         {
-            throw new System.NotImplementedException();
+            Status = logLevel;
+            Message = message;
+            
+            string? path = FilePath;
+            if (!File.Exists(path)) return;
+            using StreamWriter sw = File.CreateText(path);
+            sw.WriteLine(ToText());
+            sw.Close();
         }
     }
 }
