@@ -26,9 +26,13 @@ namespace Logger
         {
             Status = logLevel;
             Message = message;
+            string filePath = "";
+            if (FilePath != null)
+            {
+                filePath = FilePath; 
+            }
             
-            if (!File.Exists(FilePath)) return;
-            using StreamWriter sw = File.CreateText(FilePath);
+            StreamWriter sw = new(filePath, true);
             sw.WriteLine(ToText());
             sw.Close();
         }
