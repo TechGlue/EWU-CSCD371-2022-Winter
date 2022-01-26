@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace Logger.Tests
+﻿namespace Logger.Tests
 {
     [TestClass]
     public class BaseLoggerMixinsTests
@@ -38,15 +36,15 @@ namespace Logger.Tests
         {
             // Arrange
             var logger = new TestLogger();
-
+            
             // Act
+            BaseLoggerMixins.Error("Message 42", logger);
 
             // Assert
             Assert.AreEqual(1, logger.LoggedMessages.Count);
             Assert.AreEqual(LogLevel.Error, logger.LoggedMessages[0].LogLevel);
             Assert.AreEqual("Message 42", logger.LoggedMessages[0].Message);
         }
-
     }
 
     public class TestLogger : BaseLogger
