@@ -15,6 +15,9 @@ csharp_style_expression_bodied_accessors = true:silent
 csharp_style_expression_bodied_lambdas = true:silent
 csharp_indent_labels = one_less_than_current
 
+# CA1002: Do not expose generic lists
+dotnet_diagnostic.CA1002.severity = silent
+
 [*.{cs,vb}]
 #### Naming styles ####
 
@@ -66,3 +69,6 @@ dotnet_style_operator_placement_when_wrapping = beginning_of_line
 tab_width = 4
 indent_size = 4
 end_of_line = crlf
+
+# CA1014: Mark assemblies with CLSCompliant
+dotnet_diagnostic.CA1014.severity = silent
