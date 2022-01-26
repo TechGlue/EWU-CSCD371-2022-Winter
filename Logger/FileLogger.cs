@@ -27,9 +27,8 @@ namespace Logger
             Status = logLevel;
             Message = message;
             
-            string? path = FilePath;
-            if (!File.Exists(path)) return;
-            using StreamWriter sw = File.CreateText(path);
+            if (!File.Exists(FilePath)) return;
+            using StreamWriter sw = File.CreateText(FilePath);
             sw.WriteLine(ToText());
             sw.Close();
         }
