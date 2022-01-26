@@ -3,7 +3,7 @@
     public class LogFactory
     {
         //TODO:As private ????
-        private string? FilePath { get; set; }
+        public string? FilePath { get; private set; }
         
         public void ConfigureFileLogger(string filePath)
         {
