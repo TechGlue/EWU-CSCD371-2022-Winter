@@ -1,6 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
 
 namespace Logger.Tests
 {
@@ -34,8 +32,6 @@ namespace Logger.Tests
             // Assert
             Assert.ThrowsException<ArgumentNullException>(() => BaseLoggerMixins.Information("",null!));
         }
-
-
 
         [TestMethod]
         public void Error_WithData_LogsMessage()

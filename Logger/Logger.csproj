@@ -3,7 +3,7 @@
     <LangVersion>10.0</LangVersion>
     <TargetFramework>net6.0</TargetFramework>
     <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+<!--    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>-->
     <WarningsAsErrors /> 
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
