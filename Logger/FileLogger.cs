@@ -31,7 +31,7 @@ namespace Logger
             {
                 filePath = FilePath; 
             }
-            
+            //come back and verify if it can append new lines to existing files.  
             StreamWriter sw = new(filePath, true);
             sw.WriteLine(ToText());
             sw.Close();
