@@ -15,8 +15,16 @@ namespace Logger
             ClassName = className;
             FilePath = filePath;
         }
-        
-        private string ToText()
+
+        public FileLogger(string? className, string? filePath, LogLevel status, string? message)
+        {
+            ClassName = className;
+            FilePath = filePath;
+            Status = status;
+            Message = message;
+        }
+
+        public string ToText()
         {
            return $"{DateTime.Now:MM/dd/yyyy hh:mm:ss tt}\n{ClassName}\n{Status}\n{Message}";
         }
@@ -26,11 +34,14 @@ namespace Logger
         {
             Status = logLevel;
             Message = message;
-            
-            string? path = FilePath;
-            if (!File.Exists(path)) return;
-            using StreamWriter sw = File.CreateText(path);
-            sw.WriteLine(ToText());
+            string filePath = "";
+            if (FilePath != null)
+            {
+                filePath = FilePath; 
+            }
+            //come back and verify if it can append new lines to existing files.  
+            StreamWriter sw = new(filePath, true);
+            sw.WriteLine(ToText()); // might use AppendText()
             sw.Close();
         }
     }

@@ -3,10 +3,20 @@
     <LangVersion>10.0</LangVersion>
     <TargetFramework>net6.0</TargetFramework>
     <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	  <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors /> 
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
+	 <AnalysisMode>AllEnabledByDefault</AnalysisMode>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="IntelliTect.Analyzers" Version="0.1.8" />
+  </ItemGroup>
+	<ItemGroup>
+		<Compile Include="..\CommonAssembly.cs" Link="CommonAssembly.cs" />
+	</ItemGroup>
 </Project>
