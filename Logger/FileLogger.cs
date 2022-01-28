@@ -26,7 +26,7 @@ namespace Logger
 
         public string ToText()
         {
-           return $"{DateTime.Now:MM/dd/yyyy hh:mm:ss tt}\n{ClassName}\n{Status}\n{Message}";
+           return $"{DateTime.Now:MM/dd/yyyy hh:mm:ss tt}\n{ClassName}\n{Status}\n{Message}\n";
         }
        
         //ToDo: double check logic once all methods implemented. 
@@ -39,8 +39,8 @@ namespace Logger
             {
                 filePath = FilePath; 
             }
-            //come back and verify if it can append new lines to existing files.  
-            StreamWriter sw = new(filePath, true);
+            var fs = new FileStream(filePath, FileMode.Append, FileAccess.Write);
+            StreamWriter sw = new(fs);
             sw.WriteLine(ToText()); // might use AppendText()
             sw.Close();
         }
