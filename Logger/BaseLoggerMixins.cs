@@ -9,11 +9,11 @@ namespace Logger
         {
             if (logger is null)
                 throw new ArgumentNullException(nameof(logger));
-            
+
             if (message != null)
             {
                 string messageAndArguments = string.Format(message, arguments);
-                logger.Log(LogLevel.Error, messageAndArguments );
+                logger.Log(LogLevel.Error, messageAndArguments);
             }
         }
 
@@ -30,7 +30,7 @@ namespace Logger
         }
 
         public static void Debug(string? message, BaseLogger logger, params object[] arguments)
-        {   
+        {
             if (logger is null)
                 throw new ArgumentNullException(nameof(logger));
 
@@ -42,7 +42,7 @@ namespace Logger
         }
 
         public static void Information(string? message, BaseLogger logger, params object[] arguments)
-        {  
+        {
             if (logger is null)
                 throw new ArgumentNullException(nameof(logger));
             if (message != null)

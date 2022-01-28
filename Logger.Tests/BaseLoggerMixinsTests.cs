@@ -7,28 +7,28 @@
         public void Error_WithNullLogger_ThrowsException()
         {
             // Assert
-            Assert.ThrowsException<ArgumentNullException>(() => BaseLoggerMixins.Error("",null!));
+            Assert.ThrowsException<ArgumentNullException>(() => BaseLoggerMixins.Error("", null!));
         }
-        
+
         [TestMethod]
         public void Warning_WithNullLogger_ThrowsException()
         {
             // Assert
-            Assert.ThrowsException<ArgumentNullException>(() => BaseLoggerMixins.Warning("",null!));
+            Assert.ThrowsException<ArgumentNullException>(() => BaseLoggerMixins.Warning("", null!));
         }
-        
+
         [TestMethod]
         public void Debug_WithNullLogger_ThrowsException()
         {
             // Assert
-            Assert.ThrowsException<ArgumentNullException>(() => BaseLoggerMixins.Debug("",null!));
+            Assert.ThrowsException<ArgumentNullException>(() => BaseLoggerMixins.Debug("", null!));
         }
-        
+
         [TestMethod]
         public void Information_WithNullLogger_ThrowsException()
         {
             // Assert
-            Assert.ThrowsException<ArgumentNullException>(() => BaseLoggerMixins.Information("",null!));
+            Assert.ThrowsException<ArgumentNullException>(() => BaseLoggerMixins.Information("", null!));
         }
 
         [TestMethod]
@@ -36,7 +36,7 @@
         {
             // Arrange
             var logger = new TestLogger();
-            
+
             // Act
             BaseLoggerMixins.Warning(LogCategory.Warning, logger);
 
@@ -45,13 +45,13 @@
             Assert.AreEqual(LogLevel.Warning, logger.LoggedMessages[0].LogLevel);
             Assert.AreEqual("Message 41: Warning", logger.LoggedMessages[0].Message);
         }
-       
+
         [TestMethod]
         public void Error_WithData_LogsMessage()
         {
             // Arrange
             var logger = new TestLogger();
-            
+
             // Act
             BaseLoggerMixins.Error(LogCategory.Error, logger);
 
@@ -60,13 +60,13 @@
             Assert.AreEqual(LogLevel.Error, logger.LoggedMessages[0].LogLevel);
             Assert.AreEqual("Message 42: Error", logger.LoggedMessages[0].Message);
         }
-        
+
         [TestMethod]
         public void Information_WithData_LogsMessage()
         {
             // Arrange
             var logger = new TestLogger();
-            
+
             // Act
             BaseLoggerMixins.Information(LogCategory.Information, logger);
 
@@ -75,13 +75,13 @@
             Assert.AreEqual(LogLevel.Information, logger.LoggedMessages[0].LogLevel);
             Assert.AreEqual("Message 40: Information", logger.LoggedMessages[0].Message);
         }
-        
+
         [TestMethod]
         public void Debug_WithData_LogsMessage()
         {
             // Arrange
             var logger = new TestLogger();
-            
+
             // Act
             BaseLoggerMixins.Debug(LogCategory.Debug, logger);
 

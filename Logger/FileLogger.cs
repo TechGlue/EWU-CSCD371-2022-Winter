@@ -9,8 +9,8 @@ namespace Logger
         private LogLevel Status { get; set; }
         private string? Message { get; set; }
         private string? FilePath { get; set; }
-        
-        public FileLogger(string? className, string? filePath) 
+
+        public FileLogger(string? className, string? filePath)
         {
             ClassName = className;
             FilePath = filePath;
@@ -26,9 +26,9 @@ namespace Logger
 
         public string ToText()
         {
-           return $"{DateTime.Now:MM/dd/yyyy hh:mm:ss tt}\n{ClassName}\n{Status}\n{Message}\n";
+            return $"{DateTime.Now:MM/dd/yyyy hh:mm:ss tt}\n{ClassName}\n{Status}\n{Message}\n";
         }
-       
+
         public override void Log(LogLevel logLevel, string message)
         {
             Status = logLevel;
@@ -36,7 +36,7 @@ namespace Logger
             string filePath = "";
             if (FilePath != null)
             {
-                filePath = FilePath; 
+                filePath = FilePath;
             }
             var fs = new FileStream(filePath, FileMode.Append, FileAccess.Write);
             StreamWriter sw = new(fs);

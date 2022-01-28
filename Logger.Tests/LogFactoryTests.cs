@@ -3,14 +3,14 @@
     [TestClass]
     public class LogFactoryTests
     {
-        
+
         [TestMethod]
         public void ConfigureFileLogger_WithValidFilePath_PrivateMemberFilePathIsSet()
         {
             //Arrange
             LogFactory logFactory = new();
             //Act
-            logFactory.ConfigureFileLogger("/Users/luis/"); 
+            logFactory.ConfigureFileLogger("/Users/luis/");
             // Assert
             Assert.AreEqual("/Users/luis/", logFactory.FilePath);
         }

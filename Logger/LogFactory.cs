@@ -5,7 +5,7 @@
         public string? FilePath { get; private set; }
         public void ConfigureFileLogger(string filePath)
         {
-           FilePath = filePath;
+            FilePath = filePath;
         }
         public BaseLogger? CreateLogger(string className)
         {
