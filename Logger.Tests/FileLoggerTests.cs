@@ -22,9 +22,8 @@
             // Arrange
             FileLogger? logger;
             // Act
-            logger = new FileLogger("Test", "Test", LogLevel.Error, "Test");
-            string compareString = $"{DateTime.Now:MM/dd/yyyy hh:mm:ss tt}\nTest\nError\nTest\n";
-
+            logger = new FileLogger(nameof(FileLoggerTests), "Test", LogLevel.Error, "Test");
+            string compareString = $"{DateTime.Now:MM/dd/yyyy hh:mm:ss tt}\n{nameof(FileLoggerTests)}\nError\nTest\n";
             // Assert
             Assert.AreEqual(logger.ToText(), compareString);
         }
@@ -36,20 +35,17 @@
             string path = "../../../TestFile.txt";
             FileLogger logger = new (nameof(FileLoggerTests), path, LogLevel.Error, "Test");
             string message = "This is a test"; 
-            
             //Act 
             logger.Log(LogLevel.Error, message);
-
             //Assert
             var fileText = File.ReadLines(path);
             Assert.IsTrue(fileText.ToString()!.Length > 1);
             Assert.IsTrue(File.Exists(path)); 
-            
-             //CleanUp
-             if(File.Exists(path))
-             {
-                 File.Delete(path);
-             }
+            //CleanUp
+            if(File.Exists(path))
+            {
+                File.Delete(path);
+            }
         }
 
         [TestMethod]
@@ -59,13 +55,10 @@
             string path = "../../../TestFile.txt";
             FileLogger logger = new (nameof(FileLoggerTests), path, LogLevel.Error, "Test");
             string message = "This is a test";      
-           
             //Act 
             logger.Log(LogLevel.Error, message);
-            
             //Assert 
             Assert.IsTrue(File.Exists(path));
-            
             //CleanUp
             if (File.Exists(path))
             {
