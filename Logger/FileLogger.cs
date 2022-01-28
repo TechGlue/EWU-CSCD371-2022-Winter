@@ -29,7 +29,6 @@ namespace Logger
            return $"{DateTime.Now:MM/dd/yyyy hh:mm:ss tt}\n{ClassName}\n{Status}\n{Message}\n";
         }
        
-        //ToDo: double check logic once all methods implemented. 
         public override void Log(LogLevel logLevel, string message)
         {
             Status = logLevel;
@@ -41,7 +40,7 @@ namespace Logger
             }
             var fs = new FileStream(filePath, FileMode.Append, FileAccess.Write);
             StreamWriter sw = new(fs);
-            sw.WriteLine(ToText()); // might use AppendText()
+            sw.WriteLine(ToText());
             sw.Close();
         }
     }

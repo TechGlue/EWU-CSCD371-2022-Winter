@@ -7,8 +7,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
-    <!--    TODO:  PLEASE TURN IT BACK ON WHEN DONE!!!!!-->
-      <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
 	  <AnalysisMode>AllEnabledByDefault</AnalysisMode>
   </PropertyGroup>
