@@ -11,7 +11,7 @@
             FileLogger? logger;
             // Act
             string filePath = @"\test.txt";
-            logger = new FileLogger(filePath, nameof(FileLoggerTests));
+            logger = new FileLogger(nameof(FileLoggerTests), filePath);
             // Assert
             Assert.IsNotNull(logger);
         }
@@ -23,7 +23,6 @@
             FileLogger? logger;
             // Act
             logger = new FileLogger("Test", "Test", LogLevel.Error, "Test");
-
             string compareString = $"{DateTime.Now:MM/dd/yyyy hh:mm:ss tt}\nTest\nError\nTest\n";
 
             // Assert
@@ -35,7 +34,7 @@
         {
             //Arrange
             string path = "../../../TestFile.txt";
-            FileLogger logger = new ("Test", path, LogLevel.Error, "Test");
+            FileLogger logger = new (nameof(FileLoggerTests), path, LogLevel.Error, "Test");
             string message = "This is a test"; 
             
             //Act 
@@ -58,7 +57,7 @@
         {   
             //Arrange
             string path = "../../../TestFile.txt";
-            FileLogger logger = new ("Test", path, LogLevel.Error, "Test");
+            FileLogger logger = new (nameof(FileLoggerTests), path, LogLevel.Error, "Test");
             string message = "This is a test";      
            
             //Act 
