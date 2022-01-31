@@ -13,7 +13,6 @@ public class Jester
         {
             throw new ArgumentNullException();
         }
-
         _jokeService = jokeService;
         _jokesOut = jokesOut;
     }
@@ -22,7 +21,7 @@ public class Jester
     {
         string? joke = _jokeService?.GetJoke();
 
-        while (joke != null && !joke.Contains("Chuck Norris"))
+        while (joke != null && joke.Contains("Chuck Norris"))
         {
             joke = _jokeService?.GetJoke();
         }
