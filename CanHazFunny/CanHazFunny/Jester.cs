@@ -1,7 +1,5 @@
 using System;
-
 namespace CanHazFunny;
-
 public class Jester
 {
     private IJokeService? _jokeService;
@@ -9,14 +7,9 @@ public class Jester
     
     public Jester(IJokeService? jokeService, IJokesOut? jokesOut)
     {
-        if (jokeService is null && jokesOut is null)
-        {
-            throw new ArgumentNullException();
-        }
-        _jokeService = jokeService;
-        _jokesOut = jokesOut;
+        _jokeService = jokeService ?? throw new ArgumentNullException(nameof(jokeService));
+        _jokesOut = jokesOut ?? throw new ArgumentNullException(nameof(jokesOut)); 
     }
-
     public void TellJoke()
     {
         string? joke = _jokeService?.GetJoke();

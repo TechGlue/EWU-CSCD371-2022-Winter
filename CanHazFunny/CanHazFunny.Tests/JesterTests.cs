@@ -1,4 +1,3 @@
-
 using System;
 using System.IO;
 using Moq;
@@ -8,52 +7,38 @@ namespace CanHazFunny.Tests
     [TestClass]
     public class JesterTests
     {
-        //We are mocking this method 
-        //Specifically JokeService because we don't want to stay calling
-        //The API that gives us the joke just want to ensure . 
-        
-        //Unnecessary test but good for practice
         [TestMethod]
-        public void GetJoke_NoParameters_RetrievesJoke()
-        {
-           //Arrange
-           var jokeServiceMock = new Mock<IJokeService>();
-           jokeServiceMock
-               .SetupSequence(x => x.GetJoke())
-               .Returns("Insert Joke Here")
-               .Returns("Insert Joke 2 Here");
-           //Act
-           Assert.AreEqual<string?>("Insert Joke Here", jokeServiceMock.Object.GetJoke());
-           Assert.AreEqual<string?>("Insert Joke 2 Here", jokeServiceMock.Object.GetJoke());
-           //Assert
-           jokeServiceMock.Verify<string?>(x => x.GetJoke(), Times.Exactly(2));
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void JesterClass_NullInterfaces_ThrowsArgumentNullException()
+        { 
+            new Jester(null, null);
         }
         
-        //continue later
+        //Message to reviewer - I think I maybe complicated this test.  
         [TestMethod]
         public void TellJoke_NoParams_NoChuckNorrisJoke()
         {
             //Arrange
+            var stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+            
+            JokeService jokeService = new JokeService();
             var jokeServiceMock = new Mock<IJokeService>();
             jokeServiceMock
                 .SetupSequence(x => x.GetJoke())
                 .Returns("Chuck Norris Joke")
-                .Returns("Insert Joke 2 Here");
-            
-            var jokeOutMock = new Mock<IJokesOut>();
+                .Returns("cHuck norris Joke")
+                .Returns("chuck norris Joke")
+                .Returns("CHUCk NoRRis Joke")
+                .Returns("Joke");
             
             //Act
-            var jokeService = new Jester(jokeServiceMock.Object, jokeOutMock.Object);
-            jokeService.TellJoke();
+            var jester = new Jester(jokeServiceMock.Object, jokeService);
+            jester.TellJoke();
+            bool didItPrintOutChuckNorris = stringWriter.ToString().Contains("Chuck Norris");
+            
             //Asserts
+            Assert.IsFalse(didItPrintOutChuckNorris);
         }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void JesterClass_NullInterfaces_ThrowsNullException()
-        { 
-            new Jester(null, null);
-        }
-
     }
 }

@@ -2,7 +2,7 @@
 using System.Net.Http;
 namespace CanHazFunny
 {
-    public class JokeService:IJokeService, IJokesOut
+    public class JokeService: IJokeService, IJokesOut
     {
         private HttpClient HttpClient { get; } = new();
         public string GetJoke()
