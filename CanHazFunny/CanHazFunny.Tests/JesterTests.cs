@@ -35,10 +35,9 @@ namespace CanHazFunny.Tests
             //Act
             var jester = new Jester(jokeServiceMock.Object, jokeService);
             jester.TellJoke();
-            bool didItPrintOutChuckNorris = stringWriter.ToString().Contains("Chuck Norris");
             
             //Asserts
-            Assert.IsFalse(didItPrintOutChuckNorris);
+            Assert.AreEqual<string>("Joke\n", stringWriter.ToString());
         }
     }
 }
