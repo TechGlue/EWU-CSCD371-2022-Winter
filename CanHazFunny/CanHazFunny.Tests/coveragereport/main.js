@@ -224,7 +224,7 @@ var assemblies = [
   {
     "name": "CanHazFunny",
     "classes": [
-      { "name": "CanHazFunny.Jester", "rp": "CanHazFunny_Jester.html", "cl": 16, "ucl": 0, "cal": 16, "tl": 25, "ct": "LineCoverage", "mc": "-", "cb": 10, "tb": 14, "lch": [], "bch": [], "hc": [] },
+      { "name": "CanHazFunny.Jester", "rp": "CanHazFunny_Jester.html", "cl": 16, "ucl": 0, "cal": 16, "tl": 24, "ct": "LineCoverage", "mc": "-", "cb": 10, "tb": 14, "lch": [], "bch": [], "hc": [] },
       { "name": "CanHazFunny.JokeService", "rp": "CanHazFunny_JokeService.html", "cl": 0, "ucl": 8, "cal": 8, "tl": 18, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 0, "lch": [], "bch": [], "hc": [] },
       { "name": "CanHazFunny.Program", "rp": "CanHazFunny_Program.html", "cl": 0, "ucl": 3, "cal": 3, "tl": 10, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 0, "lch": [], "bch": [], "hc": [] },
     ]},
