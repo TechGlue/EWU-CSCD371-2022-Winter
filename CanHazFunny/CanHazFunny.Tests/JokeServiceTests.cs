@@ -1,5 +1,3 @@
-using System;
-using System.IO;
 using Moq;
 namespace CanHazFunny.Tests;
 
@@ -28,14 +26,18 @@ public class JokeServiceTests
     public void PrintJoke_Joke_WritesJokeToConsole(string joke)
     {
         //Arrange 
-        var stringWriter = new StringWriter();
+        StringWriter stringWriter = new();
         Console.SetOut(stringWriter);
-        JokeService jokeService = new JokeService();
-        
+        JokeService jokeService = new();
+
         //Act 
         jokeService.PrintJoke(joke);
-        
+
         //Assert
-        Assert.AreEqual(joke+"\n", stringWriter.ToString());
+        Assert.AreEqual(joke + "\n", stringWriter.ToString());
+
+        //Clean Up
+        stringWriter.Flush();
+        stringWriter.Close();
     }
 }
