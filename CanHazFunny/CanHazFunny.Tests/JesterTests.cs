@@ -30,11 +30,11 @@ public class JesterTests
             .Returns("Joke");
 
         //Act
-        var jester = new Jester(jokeServiceMock.Object, jokeService);
+        Jester jester = new(jokeServiceMock.Object, jokeService);
         jester.TellJoke();
 
         //Asserts
-        Assert.AreEqual<string>("Joke\n", stringWriter.ToString());
+        Assert.AreEqual<string>("Joke", stringWriter.ToString().Trim());
 
         //Clean Up
         stringWriter.Flush();

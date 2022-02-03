@@ -8,7 +8,7 @@ public class JokeServiceTests
     public void GetJoke_NoParameters_RetrievesJoke()
     {
         //Arrange
-        var jokeServiceMock = new Mock<IJokeService>();
+        Mock<IJokeService> jokeServiceMock = new();
         jokeServiceMock
             .SetupSequence(x => x.GetJoke())
             .Returns("Insert Joke Here")
@@ -34,7 +34,7 @@ public class JokeServiceTests
         jokeService.PrintJoke(joke);
 
         //Assert
-        Assert.AreEqual(joke + "\n", stringWriter.ToString());
+        Assert.AreEqual(joke, stringWriter.ToString().Trim());
 
         //Clean Up
         stringWriter.Flush();
