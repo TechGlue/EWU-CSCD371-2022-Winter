@@ -6,10 +6,12 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<!-- 
 		<CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<WarningsAsErrors />
 		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
+		-->
 	</PropertyGroup>
 
 	<ItemGroup>
