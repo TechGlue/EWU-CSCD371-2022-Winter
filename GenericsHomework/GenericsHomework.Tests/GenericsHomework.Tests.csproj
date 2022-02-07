@@ -9,7 +9,8 @@
 
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
-		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+<!--		Disable this warning when turning in assignment-->
+<!--		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>-->
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
 	</PropertyGroup>
