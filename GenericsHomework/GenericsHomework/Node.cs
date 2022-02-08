@@ -30,11 +30,39 @@ public class Node<TValue> where TValue : notnull
         newNode.Next = this;
     }
 
+    private void RemoveCurrentNodeReference(TValue value)
+    {
+        //Adapted from https://www.alphacodingskills.com/cs/ds/cs-delete-all-nodes-of-the-circular-singly-linked-list.php
+        Node<TValue> nextNode = Next;
+        Node<TValue> lastNode = this;
+        while (nextNode != this)
+        {
+            if (nextNode.Value.Equals(value))
+            {
+                lastNode.Next = nextNode.Next;
+                break;
+            }
+            lastNode = nextNode;
+            nextNode = nextNode.Next;
+        }
+    }
     public void Clear()
     {
-        // TODO: does this work for the garbage collection note in the assignment?
-        // removes all items from a list except the current node
-        Next = this;
+        // Removing all references to and from this node will have the rest picked up by garbage collectionor added to the finalization queue
+        // Per the book:
+        // "the garbage collector determines what to clean up based on whether any references remain"
+        // "maintaining a reference to an object will delay the garbage collector from reusing the memory consumed by the object"
+        // Therefore, only doing "Next = this;" for the clear method won't suffice
+        Node<TValue> nextNode = Next;
+        while (nextNode != this)
+        {
+            RemoveCurrentNodeReference(nextNode.Value);
+            if (nextNode.Next.Equals(this))
+            {
+                break;
+            }
+            nextNode = nextNode.Next;
+        }
     }
 
     public bool Exists(TValue value)
