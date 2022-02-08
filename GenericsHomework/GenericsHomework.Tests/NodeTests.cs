@@ -113,4 +113,64 @@ public class NodeTests
         //Check if last node will point back to head.
         Assert.AreEqual(42, headNode.Next.Next.Next.Value);
     }
+
+    [TestMethod]
+    public void ToSting_ValuesAsAString_SuccessfullyReturnsMatching()
+    {
+        //Arrange
+        Node<string> testNode = new("42");
+
+        //Act
+
+
+        //Assert
+        Assert.AreEqual("42", testNode.ToString()!);
+    }
+    [TestMethod]
+    public void ToSting_ValuesAsAnInt_SuccessfullyReturnsMatching()
+    {
+        //Arrange
+        Node<int> testNode = new(42);
+
+        //Act
+
+
+        //Assert
+        Assert.AreEqual(42, int.Parse(testNode.ToString()!));
+    }
+
+    [TestMethod]
+    public void Clear_WithSingleNode_ConfirmClearedWithExists()
+    {
+        //Arrange
+        Node<int> testNode = new(42);
+
+        //Act
+        testNode.Clear();
+
+        //Assert
+        Assert.IsTrue(testNode.Exists(42));
+    }
+
+    [TestMethod]
+    public void Clear_WithMultipleNode_ConfirmClearedWithExists()
+    {
+        //Arrange
+        Node<int> testNode = new(42);
+        testNode.Append(22);
+        testNode.Append(21);
+        testNode.Append(20);
+        testNode.Append(19);
+        testNode.Append(18);
+        //Act
+        testNode.Clear();
+
+        //Assert
+        Assert.IsTrue(testNode.Exists(42));
+        Assert.IsFalse(testNode.Exists(22));
+        Assert.IsFalse(testNode.Exists(21));
+        Assert.IsFalse(testNode.Exists(20));
+        Assert.IsFalse(testNode.Exists(19));
+        Assert.IsFalse(testNode.Exists(18));
+    }
 }
