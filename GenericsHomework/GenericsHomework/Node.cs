@@ -1,13 +1,17 @@
-﻿namespace GenericsHomework;
+﻿using System.Text;
+
+namespace GenericsHomework;
 public class Node<TValue> where TValue : notnull
 {
     public TValue Value { get; set; }
     public Node<TValue> Next { get; private set; }
+    public int Size { get; private set;}
 
     public Node(TValue value)
     {
         Value = value;
         Next = this;
+        Size = 1;
     }
 
     public void Append(TValue value)
@@ -28,6 +32,7 @@ public class Node<TValue> where TValue : notnull
 
         cur.Next = newNode;
         newNode.Next = this;
+        Size++;
     }
 
     private void RemoveCurrentNodeReference(TValue value)
@@ -63,6 +68,9 @@ public class Node<TValue> where TValue : notnull
             }
             nextNode = nextNode.Next;
         }
+
+        //Reset to one because we are not cleaning the entire list.
+        Size = 1;
     }
 
     public bool Exists(TValue value)
@@ -89,7 +97,18 @@ public class Node<TValue> where TValue : notnull
 
     public override string? ToString()
     {
-        //TODO: double check what's being returned here. 
-        return Value.ToString();
+        StringBuilder output = new();
+        Node<TValue> head = this;
+        Node<TValue> currentNode = Next;
+        output.Append(head.Value);
+
+        while (currentNode != head)
+        {
+            output.Append(" -> ");
+            output.Append(currentNode.Value);
+            currentNode = currentNode.Next;
+        }
+
+        return output.ToString();
     }
 }

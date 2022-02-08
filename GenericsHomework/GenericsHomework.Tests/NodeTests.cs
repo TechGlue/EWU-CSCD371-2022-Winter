@@ -12,7 +12,6 @@ public class NodeTests
         Assert.IsNotNull(headNode);
     }
 
-    //maybe find a better name that is shorter 
     [TestMethod]
     public void Constructor_ValidParameters_NodePointsToItselfOnCreation()
     {
@@ -23,9 +22,18 @@ public class NodeTests
     }
 
     [TestMethod]
+    public void Constructor_ValidParameters_ReturnsSizeOfList()
+    {
+        //Arrange
+        Node<int> headNode = new(42);
+        //Assert
+        Assert.AreEqual(1, headNode.Size);
+    }
+
+    [TestMethod]
     [DataRow(42)]
     [DataRow(23)]
-    public void Constructor_ValidParameters_NodeSucessfullyStoresValue(int value)
+    public void Constructor_ValidParameters_NodeSuccessfullyStoresValue(int value)
     {
         //Arrange
         Node<int> headNode = new(value);
@@ -61,6 +69,7 @@ public class NodeTests
         Assert.IsTrue(headNode.Exists(21));
         Assert.IsTrue(headNode.Exists(22));
         Assert.IsTrue(headNode.Exists(20));
+        Assert.AreEqual(6,headNode.Size);
     }
 
     [TestMethod]
@@ -81,6 +90,7 @@ public class NodeTests
         Assert.IsFalse(headNode.Exists(888));
         Assert.IsFalse(headNode.Exists(777));
         Assert.IsFalse(headNode.Exists(666));
+        Assert.AreEqual(6,headNode.Size);
     }
     
     [TestMethod]
@@ -112,32 +122,33 @@ public class NodeTests
         Assert.AreEqual(43, headNode.Next.Next.Value);
         //Check if last node will point back to head.
         Assert.AreEqual(42, headNode.Next.Next.Next.Value);
+        Assert.AreEqual(3, headNode.Size);
     }
 
     [TestMethod]
-    public void ToSting_ValuesAsAString_SuccessfullyReturnsMatching()
+    public void ToString_ValuesAsAString_SuccessfullyReturnsMatching()
     {
         //Arrange
         Node<string> testNode = new("42");
 
-        //Act
-
-
         //Assert
         Assert.AreEqual("42", testNode.ToString()!);
     }
+
     [TestMethod]
-    public void ToSting_ValuesAsAnInt_SuccessfullyReturnsMatching()
+    public void ToString_MultipleValidValues_SuccessfullyReturnsMatching()
     {
-        //Arrange
+        //Arrange 
         Node<int> testNode = new(42);
-
+        
         //Act
-
-
+        testNode.Append(24);
+        testNode.Append(33);
+        
         //Assert
-        Assert.AreEqual(42, int.Parse(testNode.ToString()!));
+        Assert.AreEqual("42 -> 24 -> 33", testNode.ToString());
     }
+    
 
     [TestMethod]
     public void Clear_WithSingleNode_ConfirmClearedWithExists()
@@ -150,6 +161,7 @@ public class NodeTests
 
         //Assert
         Assert.IsTrue(testNode.Exists(42));
+        Assert.AreEqual(1, testNode.Size);
     }
 
     [TestMethod]
@@ -172,5 +184,6 @@ public class NodeTests
         Assert.IsFalse(testNode.Exists(20));
         Assert.IsFalse(testNode.Exists(19));
         Assert.IsFalse(testNode.Exists(18));
+        Assert.AreEqual(1, testNode.Size);
     }
 }
