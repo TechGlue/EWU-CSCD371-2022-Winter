@@ -11,7 +11,7 @@ public class NodeTests
         //Assert
         Assert.IsNotNull(node);
     }
-    
+
     //maybe find a better name that is shorter 
     [TestMethod]
     public void Constructor_ValidParameters_NodePointsToItselfOnCreation()
@@ -21,7 +21,7 @@ public class NodeTests
         //Assert
         Assert.AreEqual(node, node.Next);
     }
-    
+
     [TestMethod]
     [DataRow(42)]
     [DataRow(23)]

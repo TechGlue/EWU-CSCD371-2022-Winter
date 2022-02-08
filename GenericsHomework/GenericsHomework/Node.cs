@@ -3,7 +3,7 @@ public class Node<TValue> where TValue : notnull
 {
     public TValue Value { get; set; }
     public Node<TValue> Next { get; private set; }
-    
+
     public Node(TValue value)
     {
         Value = value;
@@ -20,10 +20,10 @@ public class Node<TValue> where TValue : notnull
         Node<TValue> newNode = new(value);
         Node<TValue> cur = Next;
 
-        while(cur.Next != this)
+        while (cur.Next != this)
         {
-          //increment
-          cur = cur.Next;
+            //increment
+            cur = cur.Next;
         }
 
         cur.Next = newNode;
@@ -69,17 +69,17 @@ public class Node<TValue> where TValue : notnull
     {
         //maybe not needed double check on testing
         //Checking if we can find the value in head.
-        if(Value.Equals(value))
-          return true;
+        if (Value.Equals(value))
+            return true;
 
         Node<TValue> head = this;
         Node<TValue> currentNode = Next;
 
-        while(currentNode != head)
+        while (currentNode != head)
         {
-            if(currentNode.Value.Equals(value))
+            if (currentNode.Value.Equals(value))
             {
-              return true;
+                return true;
             }
             currentNode = currentNode.Next;
         }
@@ -87,7 +87,7 @@ public class Node<TValue> where TValue : notnull
         return false;
     }
 
-    public override string ToString()
+    public override string? ToString()
     {
         //TODO: double check what's being returned here. 
         return Value.ToString();

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -6,16 +6,14 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
-		<!-- 
 		<CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<WarningsAsErrors />
 		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
-		-->
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="IntelliTect.Analyzers" Version="0.1.8" />
+		<PackageReference Include="IntelliTect.Analyzers" Version="0.1.8" />
 	</ItemGroup>
 
 </Project>
