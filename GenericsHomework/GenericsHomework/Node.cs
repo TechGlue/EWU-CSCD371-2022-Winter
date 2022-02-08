@@ -69,7 +69,7 @@ public class Node<TValue> where TValue : notnull
     {
         //maybe not needed double check on testing
         //Checking if we can find the value in head.
-        if(this.Value.Equals(value))
+        if(Value.Equals(value))
           return true;
 
         Node<TValue> head = this;

@@ -4,7 +4,7 @@ namespace GenericsHomework.Tests;
 public class NodeTests
 {
     [TestMethod]
-    public void Constructor_ValidValue_NodeIsNotNull()
+    public void Constructor_ValidParameters_NodeIsNotNull()
     {
         //Arrange
         Node<int> node = new(42);
@@ -14,7 +14,7 @@ public class NodeTests
     
     //maybe find a better name that is shorter 
     [TestMethod]
-    public void Constructor_ValidValue_NodePointsToItselfOnCreation()
+    public void Constructor_ValidParameters_NodePointsToItselfOnCreation()
     {
         //Arrange
         Node<int> node = new(42);
@@ -24,13 +24,13 @@ public class NodeTests
     
     [TestMethod]
     [DataRow(42)]
-    [DataRow(22)]
     [DataRow(23)]
-    public void Constructor_ValidValue_NodeSucessfullyStoresValue(int value)
+    public void Constructor_ValidParameters_NodeSucessfullyStoresValue(int value)
     {
         //Arrange
         Node<int> node = new(value);
         //Assert
         Assert.AreEqual(node.Value, value);
     }
+
 }
