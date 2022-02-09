@@ -69,7 +69,7 @@ public class NodeTests
         Assert.IsTrue(headNode.Exists(21));
         Assert.IsTrue(headNode.Exists(22));
         Assert.IsTrue(headNode.Exists(20));
-        Assert.AreEqual(6,headNode.Size);
+        Assert.AreEqual(6, headNode.Size);
     }
 
     [TestMethod]
@@ -90,9 +90,9 @@ public class NodeTests
         Assert.IsFalse(headNode.Exists(888));
         Assert.IsFalse(headNode.Exists(777));
         Assert.IsFalse(headNode.Exists(666));
-        Assert.AreEqual(6,headNode.Size);
+        Assert.AreEqual(6, headNode.Size);
     }
-    
+
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
     public void Append_DuplicateNodeValue_ThrowsException()
@@ -106,7 +106,7 @@ public class NodeTests
         headNode.Append(22);
     }
 
-    
+
     [TestMethod]
     public void Append_ValidParameters_SuccessfullyInsertsNode()
     {
@@ -132,7 +132,7 @@ public class NodeTests
         Node<string> testNode = new("42");
 
         //Assert
-        Assert.AreEqual("42", testNode.ToString()!);
+        Assert.AreEqual("42", testNode.ToString());
     }
 
     [TestMethod]
@@ -140,15 +140,15 @@ public class NodeTests
     {
         //Arrange 
         Node<int> testNode = new(42);
-        
+
         //Act
         testNode.Append(24);
         testNode.Append(33);
-        
+
         //Assert
         Assert.AreEqual("42 -> 24 -> 33", testNode.ToString());
     }
-    
+
 
     [TestMethod]
     public void Clear_WithSingleNode_ConfirmClearedWithExists()

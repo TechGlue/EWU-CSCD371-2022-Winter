@@ -5,7 +5,7 @@ public class Node<TValue> where TValue : notnull
 {
     public TValue Value { get; set; }
     public Node<TValue> Next { get; private set; }
-    public int Size { get; private set;}
+    public int Size { get; private set; }
 
     public Node(TValue value)
     {
