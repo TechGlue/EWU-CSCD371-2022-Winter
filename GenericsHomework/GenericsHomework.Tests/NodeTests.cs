@@ -22,15 +22,6 @@ public class NodeTests
     }
 
     [TestMethod]
-    public void Constructor_ValidParameters_ReturnsSizeOfList()
-    {
-        //Arrange
-        Node<int> headNode = new(42);
-        //Assert
-        Assert.AreEqual(1, headNode.Size);
-    }
-
-    [TestMethod]
     [DataRow(42)]
     [DataRow(23)]
     public void Constructor_ValidParameters_NodeSuccessfullyStoresValue(int value)
@@ -57,11 +48,11 @@ public class NodeTests
         Node<int> headNode = new(42);
 
         //Act
-        headNode.Append(22);
-        headNode.Append(21);
-        headNode.Append(20);
-        headNode.Append(19);
-        headNode.Append(18);
+        headNode.AppendLast(22);
+        headNode.AppendLast(21);
+        headNode.AppendLast(20);
+        headNode.AppendLast(19);
+        headNode.AppendLast(18);
 
         //Assert
         Assert.IsTrue(headNode.Exists(19));
@@ -69,7 +60,6 @@ public class NodeTests
         Assert.IsTrue(headNode.Exists(21));
         Assert.IsTrue(headNode.Exists(22));
         Assert.IsTrue(headNode.Exists(20));
-        Assert.AreEqual(6, headNode.Size);
     }
 
     [TestMethod]
@@ -79,23 +69,34 @@ public class NodeTests
         Node<int> headNode = new(42);
 
         //Act
-        headNode.Append(22);
-        headNode.Append(21);
-        headNode.Append(20);
-        headNode.Append(19);
-        headNode.Append(18);
+        headNode.AppendLast(22);
+        headNode.AppendLast(21);
+        headNode.AppendLast(20);
+        headNode.AppendLast(19);
+        headNode.AppendLast(18);
 
         //Assert
         Assert.IsFalse(headNode.Exists(999));
         Assert.IsFalse(headNode.Exists(888));
         Assert.IsFalse(headNode.Exists(777));
         Assert.IsFalse(headNode.Exists(666));
-        Assert.AreEqual(6, headNode.Size);
     }
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
-    public void Append_DuplicateNodeValue_ThrowsException()
+    public void Append_DuplicateNodeValues_ThrowsException()
+    {
+        //Arrange
+        Node<int> headNode = new(42);
+
+        //Assert
+        headNode.Append(22);
+        headNode.Append(21);
+        headNode.Append(22);
+    }
+
+    [TestMethod]
+    public void Append_ValidParameters_SuccessfullyInsertsNodeKeepsOrder()
     {
         //Arrange
         Node<int> headNode = new(42);
@@ -103,26 +104,56 @@ public class NodeTests
         //Act
         headNode.Append(22);
         headNode.Append(21);
-        headNode.Append(22);
+        
+        //Assert
+        Assert.AreEqual(22, headNode.Next.Next.Value);
+        Assert.AreEqual(21, headNode.Next.Value);
     }
 
-
     [TestMethod]
-    public void Append_ValidParameters_SuccessfullyInsertsNode()
+    public void Append_ValidParameters_LastNodePointsToHeadNode()
     {
         //Arrange
         Node<int> headNode = new(42);
 
         //Act
-        headNode.Append(24);
-        headNode.Append(43);
+        headNode.Append(22);
+        headNode.Append(21);
+        
+        //Assert
+        Assert.AreEqual(headNode, headNode.Next.Next.Next);
+        Assert.AreEqual(22, headNode.Next.Next.Value);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void AppendLast_DuplicateNodeValues_ThrowsException()
+    {
+        //Arrange
+        Node<int> headNode = new(42);
+
+        //Act
+        headNode.AppendLast(22);
+        headNode.AppendLast(21);
+        headNode.AppendLast(22);
+    }
+
+
+    [TestMethod]
+    public void AppendLast_ValidParameters_SuccessfullyInsertsNode()
+    {
+        //Arrange
+        Node<int> headNode = new(42);
+
+        //Act
+        headNode.AppendLast(24);
+        headNode.AppendLast(43);
 
         //Assert
         Assert.AreEqual(24, headNode.Next.Value);
         Assert.AreEqual(43, headNode.Next.Next.Value);
         //Check if last node will point back to head.
         Assert.AreEqual(42, headNode.Next.Next.Next.Value);
-        Assert.AreEqual(3, headNode.Size);
     }
 
     [TestMethod]
@@ -142,8 +173,8 @@ public class NodeTests
         Node<int> testNode = new(42);
 
         //Act
-        testNode.Append(24);
-        testNode.Append(33);
+        testNode.AppendLast(24);
+        testNode.AppendLast(33);
 
         //Assert
         Assert.AreEqual("42 -> 24 -> 33", testNode.ToString());
@@ -161,7 +192,6 @@ public class NodeTests
 
         //Assert
         Assert.IsTrue(testNode.Exists(42));
-        Assert.AreEqual(1, testNode.Size);
     }
 
     [TestMethod]
@@ -169,11 +199,11 @@ public class NodeTests
     {
         //Arrange
         Node<int> testNode = new(42);
-        testNode.Append(22);
-        testNode.Append(21);
-        testNode.Append(20);
-        testNode.Append(19);
-        testNode.Append(18);
+        testNode.AppendLast(22);
+        testNode.AppendLast(21);
+        testNode.AppendLast(20);
+        testNode.AppendLast(19);
+        testNode.AppendLast(18);
         //Act
         testNode.Clear();
 
@@ -184,6 +214,5 @@ public class NodeTests
         Assert.IsFalse(testNode.Exists(20));
         Assert.IsFalse(testNode.Exists(19));
         Assert.IsFalse(testNode.Exists(18));
-        Assert.AreEqual(1, testNode.Size);
     }
 }

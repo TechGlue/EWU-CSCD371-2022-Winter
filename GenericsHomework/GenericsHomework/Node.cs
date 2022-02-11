@@ -5,16 +5,27 @@ public class Node<TValue> where TValue : notnull
 {
     public TValue Value { get; set; }
     public Node<TValue> Next { get; private set; }
-    public int Size { get; private set; }
-
+    
     public Node(TValue value)
     {
         Value = value;
         Next = this;
-        Size = 1;
     }
 
     public void Append(TValue value)
+    {
+        if (Exists(value))
+        {
+            throw new ArgumentException("Value already exists in list");
+        }
+
+        Node<TValue> newNode = new(value);
+        newNode.Next = Next;
+        Next = newNode;
+    }
+
+    //Read Reqs wrong left it in here because it's useful for testing other methods. 
+    public void AppendLast(TValue value)
     {
         if (Exists(value))
         {
@@ -32,7 +43,6 @@ public class Node<TValue> where TValue : notnull
 
         cur.Next = newNode;
         newNode.Next = this;
-        Size++;
     }
 
     private void RemoveCurrentNodeReference(TValue value)
@@ -68,9 +78,6 @@ public class Node<TValue> where TValue : notnull
             }
             nextNode = nextNode.Next;
         }
-
-        //Reset to one because we are not cleaning the entire list.
-        Size = 1;
     }
 
     public bool Exists(TValue value)
