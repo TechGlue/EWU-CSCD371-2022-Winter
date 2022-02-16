@@ -2,4 +2,7 @@
   <PropertyGroup>
     <RootNamespace>Assignment</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="IntelliTect.Analyzers" Version="0.1.8" />
+  </ItemGroup>
 </Project>
