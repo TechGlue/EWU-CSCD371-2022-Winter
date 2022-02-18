@@ -3,7 +3,10 @@
     public class SampleData : ISampleData
     {
         // 1.
-        public IEnumerable<string> CsvRows => throw new NotImplementedException();
+        //Figure out the relative path for now manually change it
+        public IEnumerable<string> CsvRows => File.ReadAllLines("/Users/luis/EWU-CSCD371-2022-Winter/Assignment/Assignment/People.csv")
+            .Skip(1);
+        
 
         // 2.
         public IEnumerable<string> GetUniqueSortedListOfStatesGivenCsvRows()
