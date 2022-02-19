@@ -56,6 +56,19 @@ public class SampleDataTests
         //verify there are values
         // Assert.IsTrue(sortedQuery.Count() > 0);
     }
+
+    [TestMethod]
+    public void GetAggregateSortedListOfStatesUsingCsvRows_RowsProperlyRead_CommaSeperatedStatesList()
+    {
+        //Arrange
+        SampleData initClass = new SampleData();
+        string expectedString = "AL,AZ,CA,DC,FL,GA,IN,KS,LA,MD,MN,MO,MT,NC,NE,NH,NV,NY,OR,PA,SC,TN,TX,UT,VA,WA,WV";
+        string actualString = initClass.GetAggregateSortedListOfStatesUsingCsvRows();
+        //Assert
+        Assert.AreEqual(expectedString.Length, actualString.Length);
+        Assert.AreEqual(expectedString, actualString);
+    }
+    
     
     
     

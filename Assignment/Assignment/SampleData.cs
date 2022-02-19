@@ -19,13 +19,17 @@
         }
 
         // 3.
+        //idk if we want to have states being null.
         public string GetAggregateSortedListOfStatesUsingCsvRows()
         {
+            //grab the states 
+            string?[] states = CsvRows
+                .Select(x => x.Split(',').GetValue(6)?.ToString())
+                .Distinct()
+                .OrderBy(x => x)
+                .ToArray();
             
-            
-            
-            
-            throw new NotImplementedException();
+            return string.Join(",", states);
         }
 
         // 4.
