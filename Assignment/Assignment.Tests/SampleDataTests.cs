@@ -45,20 +45,42 @@ public class SampleDataTests
     [TestMethod]
     public void GetUniqueSortedListOfStatesGivenCsvRows_ValidParameters_ChecksIfCollectionIsSorted()
     {
+        //TODO:No idea how we would check if a collection is sorted using only linq
+        //TODO: Created this method as a place holder. 
+        
         //Arrange
         SampleData initClass = new SampleData();
+        bool isSorted = true;
+        IEnumerable<string> sortedQuery = initClass.GetUniqueSortedListOfStatesGivenCsvRows();
+        string prevString = "";
+        var enumerable = sortedQuery.ToList();
 
         //Act
-        IEnumerable<string> sortedQuery = initClass.GetUniqueSortedListOfStatesGivenCsvRows();
+        foreach (string state in enumerable)
+        {
+            if (enumerable.First().Equals(state, StringComparison.Ordinal))
+            {
+                //do nothing
+                prevString = state;
+            }
+            else
+            {
+                if (String.Compare(prevString, state, StringComparison.Ordinal) > 0)
+                {
+                    isSorted = false;
+                }
+                
+            }
+            if (isSorted == false)
+                break;
+        }
 
         //Assert
-
-        //verify there are values
-        // Assert.IsTrue(sortedQuery.Count() > 0);
+        Assert.IsTrue(isSorted);
     }
 
     [TestMethod]
-    public void GetAggregateSortedListOfStatesUsingCsvRows_RowsProperlyRead_CommaSeperatedStatesList()
+    public void GetAggregateSortedListOfStatesUsingCsvRows_WithCSV_ReturnsCommaSeperatedStatesList()
     {
         //Arrange
         SampleData initClass = new SampleData();
@@ -68,8 +90,4 @@ public class SampleDataTests
         Assert.AreEqual(expectedString.Length, actualString.Length);
         Assert.AreEqual(expectedString, actualString);
     }
-    
-    
-    
-    
 }
