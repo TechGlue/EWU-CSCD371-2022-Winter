@@ -25,8 +25,8 @@ public class SampleDataTests
         string lastEntry = "50,Claudell,Leathe,cleathe1d@columbia.edu,30262 Steensland Way,Newport News,VA,87930";
 
         //Assert
-        Assert.AreEqual<string>(initClass.CsvRows.First(), firstEntry);
-        Assert.AreEqual<string>(initClass.CsvRows.Last(), lastEntry);
+        Assert.AreEqual(initClass.CsvRows.First(), firstEntry);
+        Assert.AreEqual(initClass.CsvRows.Last(), lastEntry);
     }
 
     [TestMethod]
@@ -70,7 +70,6 @@ public class SampleDataTests
                 {
                     isSorted = false;
                 }
-
             }
             if (isSorted == false)
             {
@@ -87,7 +86,7 @@ public class SampleDataTests
     {
         //Arrange
         SampleData initClass = new();
-        string expectedString = "AL,AZ,CA,DC,FL,GA,IN,KS,LA,MD,MN,MO,MT,NC,NE,NH,NV,NY,OR,PA,SC,TN,TX,UT,VA,WA,WV";
+        string expectedString = "AL, AZ, CA, DC, FL, GA, IN, KS, LA, MD, MN, MO, MT, NC, NE, NH, NV, NY, OR, PA, SC, TN, TX, UT, VA, WA, WV";
         string actualString = initClass.GetAggregateSortedListOfStatesUsingCsvRows();
         //Assert
         Assert.AreEqual(expectedString.Length, actualString.Length);
@@ -143,6 +142,7 @@ public class SampleDataTests
         Assert.AreEqual<(string FirstName, string LastName)>(("Amelia", "Toal"), filteredData.Last());
     }
 
+    
     [TestMethod]
     public void GetAggregateListOfStatesGivenPeopleCollection_GivenPeople_ReturnsListOfStates()
     {
@@ -155,5 +155,21 @@ public class SampleDataTests
 
         //Assert
         Assert.AreEqual("AL, AZ, CA, DC, FL, GA, IN, KS, LA, MD, MN, MO, MT, NC, NE, NH, NV, NY, OR, PA, SC, TN, TX, UT, VA, WA, WV", list);
+    }
+
+    [TestMethod]
+    public void GetAggregateListOfStatesGivenPeopleCollection_GivenPeopleAndSortedListOfStates_ReturnsListOfStates()
+    {
+        //Arrange
+        SampleData initClass = new();
+
+        //Act
+        IEnumerable<IPerson> people = initClass.People;
+        string list = initClass.GetAggregateListOfStatesGivenPeopleCollection(people);
+        string actualString = initClass.GetAggregateSortedListOfStatesUsingCsvRows();
+        
+        //Assert
+        Assert.AreEqual(actualString, list);
+        Assert.AreEqual(actualString.Length, list.Length);
     }
 }

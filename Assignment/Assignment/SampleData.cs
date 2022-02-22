@@ -3,14 +3,12 @@
     public class SampleData : ISampleData
     {
         // 1.
-        //Figure out the relative path for now manually change it
-        //Relative path
         public IEnumerable<string> CsvRows => File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + "People.csv")
             .Skip(1);
 
         // 2.decide whether we should make this nullable while we may not need to 
         //Since we know that the file will not make it null idkdksk double check. 
-        public IOrderedEnumerable<string?> GetUniqueSortedListOfStatesGivenCsvRows()
+        public IOrderedEnumerable<string> GetUniqueSortedListOfStatesGivenCsvRows()
         {
             return CsvRows
                 .Select(x => x.Split(',').GetValue(6)?.ToString())
@@ -19,7 +17,6 @@
         }
 
         // 3.
-        //idk if we want to have states being null.
         public string GetAggregateSortedListOfStatesUsingCsvRows()
         {
             //grab the states 
@@ -29,7 +26,7 @@
                 .OrderBy(x => x)
                 .ToArray();
 
-            return string.Join(",", states);
+            return string.Join(", ", states);
         }
 
         // 4.
