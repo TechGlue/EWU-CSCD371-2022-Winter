@@ -3,18 +3,33 @@
     public class SampleData : ISampleData
     {
         // 1.
-        public IEnumerable<string> CsvRows => throw new NotImplementedException();
+        //Figure out the relative path for now manually change it
+        //Relative path
+        public IEnumerable<string> CsvRows => File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory+"People.csv")
+            .Skip(1);
 
-        // 2.
-        public IEnumerable<string> GetUniqueSortedListOfStatesGivenCsvRows()
+        // 2.decide whether we should make this nullable while we may not need to 
+        //Since we know that the file will not make it null idkdksk double check. 
+        public IOrderedEnumerable<string?> GetUniqueSortedListOfStatesGivenCsvRows()
         {
-            throw new NotImplementedException();
+            return CsvRows
+                .Select(x => x.Split(',').GetValue(6)?.ToString())
+                .Distinct()
+                .OrderBy(x=> x);
         }
 
         // 3.
+        //idk if we want to have states being null.
         public string GetAggregateSortedListOfStatesUsingCsvRows()
         {
-            throw new NotImplementedException();
+            //grab the states 
+            string?[] states = CsvRows
+                .Select(x => x.Split(',').GetValue(6)?.ToString())
+                .Distinct()
+                .OrderBy(x => x)
+                .ToArray();
+            
+            return string.Join(",", states);
         }
 
         // 4.
