@@ -16,7 +16,7 @@ public class Node<TValue> : IEnumerable<Node<TValue>> where TValue : notnull
     {
         if (Exists(value))
         {
-            throw new ArgumentException("Value already exists in list");
+            throw new ArgumentException(message: "Value already exists in list");
         }
 
         Node<TValue> newNode = new(value);
