@@ -12,6 +12,7 @@ public class NodeTests
         head.Append(3);
 
         bool insideIterator = false;
+        // TODO: unused variable "item"
         foreach (Assignment.Node<int> item in head)
         {
             insideIterator = true;
