@@ -8,10 +8,10 @@
 
         // 2.decide whether we should make this nullable while we may not need to 
         //Since we know that the file will not make it null idkdksk double check. 
-        public IOrderedEnumerable<string> GetUniqueSortedListOfStatesGivenCsvRows()
+        public IEnumerable<string> GetUniqueSortedListOfStatesGivenCsvRows()
         {
             return CsvRows
-                .Select(x => x.Split(',').GetValue(6)?.ToString())
+                .Select(x => x.Split(',')[6])
                 .Distinct()
                 .OrderBy(x => x);
         }
@@ -19,13 +19,7 @@
         // 3.
         public string GetAggregateSortedListOfStatesUsingCsvRows()
         {
-            //grab the states 
-            string?[] states = CsvRows
-                .Select(x => x.Split(',').GetValue(6)?.ToString())
-                .Distinct()
-                .OrderBy(x => x)
-                .ToArray();
-
+            IEnumerable<string> states = GetUniqueSortedListOfStatesGivenCsvRows();
             return string.Join(", ", states);
         }
 

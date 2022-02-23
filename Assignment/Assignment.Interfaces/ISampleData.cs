@@ -6,7 +6,7 @@
         IEnumerable<string> CsvRows { get; }
 
         // 2.
-        IOrderedEnumerable<string?> GetUniqueSortedListOfStatesGivenCsvRows();
+        IEnumerable<string> GetUniqueSortedListOfStatesGivenCsvRows();
 
         // 3.
         string GetAggregateSortedListOfStatesUsingCsvRows();

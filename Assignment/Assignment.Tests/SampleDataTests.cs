@@ -1,8 +1,7 @@
 using Assignment;
-using System.Linq;
 
 namespace Assignments.Tests;
-
+//ToDo:Need to create a test for 2 that leverages spokane based addresses.
 [TestClass]
 public class SampleDataTests
 {
