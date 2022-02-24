@@ -1,3 +1,4 @@
+using System.Collections;
 using Assignment;
 
 namespace Assignments.Tests;
@@ -43,41 +44,25 @@ public class SampleDataTests
     }
 
     [TestMethod]
-    public void GetUniqueSortedListOfStatesGivenCsvRows_ValidParameters_ChecksIfCollectionIsSorted()
+    public void GetUniqueSortedListOfStatesGivenCsvRows_ValidParametersUtilizingLinq_ChecksIfCollectionIsSorted()
     {
-        //TODO:No idea how we would check if a collection is sorted using only linq
-        //TODO: Created this method as a place holder. 
-
-        //Arrange
+        //Arrange 
         SampleData initClass = new();
-        bool isSorted = true;
+        IEnumerable<string> sortedQueryWithLinq = initClass.GetUniqueSortedListOfStatesGivenCsvRows().OrderBy(x=>x);
         IEnumerable<string> sortedQuery = initClass.GetUniqueSortedListOfStatesGivenCsvRows();
-        string prevString = "";
-        List<string>? enumerable = sortedQuery.ToList();
-
-        //Act
-        foreach (string state in enumerable)
-        {
-            if (enumerable.First().Equals(state, StringComparison.Ordinal))
-            {
-                //do nothing
-                prevString = state;
-            }
-            else
-            {
-                if (string.Compare(prevString, state, StringComparison.Ordinal) > 0)
-                {
-                    isSorted = false;
-                }
-            }
-            if (isSorted == false)
-            {
-                break;
-            }
-        }
 
         //Assert
-        Assert.IsTrue(isSorted);
+        Assert.IsTrue(sortedQuery.SequenceEqual(sortedQueryWithLinq));
+    }
+
+    [TestMethod]
+    public void GetUniqueSortedListOfStatesGivenCsvRows_WithSpokaneAddresses_CollectionSorted()
+    {
+        //Arrange
+        
+        //Act
+        
+        //Assert
     }
 
     [TestMethod]
