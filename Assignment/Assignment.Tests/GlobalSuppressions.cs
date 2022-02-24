@@ -9,4 +9,5 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "Underscores allowed in test names.")]
 [assembly: SuppressMessage("Globalization", "CA1305:Specify IFormatProvider", Justification = "Globalization not required in this assignment.")]
 [assembly: SuppressMessage("Globalization", "CA1307:Specify StringComparison", Justification = "Globalization not required in this assignment.")]
-[assembly: SuppressMessage("Style", "IDE0039:Use local function", Justification = "I don't understand the code when it wants me to format it like that :D")] 
+[assembly: SuppressMessage("Style", "IDE0039:Use local function", Justification = "I don't understand the code when it wants me to format it like that :D")]
+[assembly: SuppressMessage("Flow", "INTL0303:Local variable unused", Justification = "For each loop requires variable whether or not it is used")] 

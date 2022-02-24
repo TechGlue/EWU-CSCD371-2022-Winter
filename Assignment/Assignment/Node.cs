@@ -59,7 +59,16 @@ public class Node<TValue> : IEnumerable<Node<TValue>> where TValue : notnull
 
     IEnumerator IEnumerable.GetEnumerator()
     {
-        throw new NotImplementedException();
-        //return GetEnumerator();
+        return GetEnumerator();
+    }
+
+    public IEnumerable<Node<TValue>> ChildItems(int maximum)
+    {
+        Node<TValue> currentNode = this;
+        for (int i = 0; i < maximum; i++)
+        {
+            yield return currentNode;
+            currentNode = currentNode.Next;
+        }
     }
 }

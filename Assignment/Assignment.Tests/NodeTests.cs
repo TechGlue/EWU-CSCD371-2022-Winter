@@ -5,7 +5,6 @@ namespace Assignments.Tests;
 [TestClass]
 public class NodeTests
 {
-    
     [TestMethod]
     public void Constructor_ValidParameters_NodeIsNotNull()
     {
@@ -44,15 +43,14 @@ public class NodeTests
         head.Append(3);
 
         bool insideIterator = false;
-        // TODO: unused variable "item"
-        foreach (Assignment.Node<int> item in head)
+        foreach (Node<int> item in head)
         {
             insideIterator = true;
         }
 
         Assert.IsTrue(insideIterator);
     }
-    
+
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
     public void Append_DuplicateNodeValues_ThrowsException()
@@ -75,7 +73,7 @@ public class NodeTests
         //Act
         headNode.Append(22);
         headNode.Append(21);
-        
+
         //Assert
         Assert.AreEqual(22, headNode.Next.Next.Value);
         Assert.AreEqual(21, headNode.Next.Value);
@@ -95,7 +93,7 @@ public class NodeTests
         Assert.AreEqual(headNode, headNode.Next.Next.Next);
         Assert.AreEqual(22, headNode.Next.Next.Value);
     }
-    
+
     [TestMethod]
     public void Exists_ValidParameters_ChecksHeadReturnsTrue()
     {
@@ -145,5 +143,37 @@ public class NodeTests
         Assert.IsFalse(headNode.Exists(777));
         Assert.IsFalse(headNode.Exists(666));
     }
+    [TestMethod]
+    public void ChildItems_WithNodes_ReturningValuesUnderMax()
+    {
+        //Arrange
+        Node<int> headNode = new(42);
 
+        //Act
+        headNode.Append(1);
+        headNode.Append(2);
+        headNode.Append(3);
+        headNode.Append(4);
+        headNode.Append(5);
+
+        int max = 3;
+        IEnumerable<Node<int>> nodesUnderMax = headNode.ChildItems(max);
+
+        //Assert
+        Assert.AreEqual(3, nodesUnderMax.Count());
+    }
+
+    [TestMethod]
+    public void ChildItems_WithOnlyHeadNode_ReturningValuesUnderMax()
+    {
+        //Arrange
+        Node<int> headNode = new(42);
+
+        //Act
+        int max = 1;
+        IEnumerable<Node<int>> nodesUnderMax = headNode.ChildItems(max);
+
+        //Assert
+        Assert.AreEqual(1, nodesUnderMax.Count());
+    }
 }
