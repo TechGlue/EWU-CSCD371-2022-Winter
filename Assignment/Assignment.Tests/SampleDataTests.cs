@@ -4,26 +4,24 @@ namespace Assignments.Tests;
 [TestClass]
 public class SampleDataTests
 {
+    private readonly SampleData _InitClass = new();
+    
     [TestMethod]
     public void Constructor_CollectionRead_CSVRowCountMatch()
     {
-        //Arrange
-        SampleData initClass = new();
-        
         //Assert
-        Assert.AreEqual(initClass.CsvRows.Count(), 50);
+        Assert.AreEqual(_InitClass.CsvRows.Count(), 50);
     }
 
     [TestMethod]
     public void Constructor_CollectionRead_AssertCSVProperlyReadAllEntries()
     {
         //Arrange
-        SampleData initClass = new();
         string[] list = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + "People.csv");
         
          bool csvLoaded = true;
          int listCounter = 1;
-         foreach (string str in initClass.CsvRows)
+         foreach (string str in _InitClass.CsvRows)
          {
              if (!str.Equals(list[listCounter], StringComparison.Ordinal))
              {
@@ -41,10 +39,7 @@ public class SampleDataTests
     public void GetUniqueSortedListOfStatesGivenCsvRows_ValidParameters_ReturnsProperSizeOfCollection()
     {
         //Arrange
-        SampleData initClass = new();
-
-        //Act
-        IEnumerable<string> sortedQuery = initClass.GetUniqueSortedListOfStatesGivenCsvRows();
+        IEnumerable<string> sortedQuery = _InitClass.GetUniqueSortedListOfStatesGivenCsvRows();
 
         //Assert
         Assert.AreEqual(27, sortedQuery.Count());
@@ -54,10 +49,9 @@ public class SampleDataTests
     [TestMethod]
     public void GetUniqueSortedListOfStatesGivenCsvRows_ValidParametersUtilizingLinq_ChecksIfCollectionIsSorted()
     {
-        //Arrange 
-        SampleData initClass = new();
-        IEnumerable<string> sortedQueryWithLinq = initClass.GetUniqueSortedListOfStatesGivenCsvRows().OrderBy(x=>x);
-        IEnumerable<string> sortedQuery = initClass.GetUniqueSortedListOfStatesGivenCsvRows();
+        //Arrange
+        IEnumerable<string> sortedQueryWithLinq = _InitClass.GetUniqueSortedListOfStatesGivenCsvRows().OrderBy(x=>x);
+        IEnumerable<string> sortedQuery = _InitClass.GetUniqueSortedListOfStatesGivenCsvRows();
 
         //Assert
         Assert.IsTrue(sortedQuery.SequenceEqual(sortedQueryWithLinq));
@@ -97,9 +91,8 @@ public class SampleDataTests
     public void GetAggregateSortedListOfStatesUsingCsvRows_WithCSV_ReturnsCommaSeperatedStatesList()
     {
         //Arrange
-        SampleData initClass = new();
         string expectedString = "AL, AZ, CA, DC, FL, GA, IN, KS, LA, MD, MN, MO, MT, NC, NE, NH, NV, NY, OR, PA, SC, TN, TX, UT, VA, WA, WV";
-        string actualString = initClass.GetAggregateSortedListOfStatesUsingCsvRows();
+        string actualString = _InitClass.GetAggregateSortedListOfStatesUsingCsvRows();
         //Assert
         Assert.AreEqual(expectedString.Length, actualString.Length);
         Assert.AreEqual(expectedString, actualString);
@@ -109,14 +102,10 @@ public class SampleDataTests
     public void People_Ordered_Matches()
     {
         //Arrange
-        SampleData initClass = new();
-
-        //Act
-        IEnumerable<IPerson> people = initClass.People;
+        IEnumerable<IPerson> people = _InitClass.People;
 
         //Assert
         Assert.AreEqual(50, people.Count());
-
         Assert.AreEqual("Arthur Myles", $"{people.First().FirstName} {people.First().LastName}");
         Assert.AreEqual("Amelia Toal", $"{people.Last().FirstName} {people.Last().LastName}");
     }
@@ -125,11 +114,10 @@ public class SampleDataTests
     public void FilterByEmailAddress_GivenExactEmail_MatchesName()
     {
         //Arrange
-        SampleData initClass = new();
         Predicate<string> filter = (string email) => email == "pjenyns0@state.gov";
 
         //Act
-        IEnumerable<(string FirstName, string LastName)> filteredData = initClass.FilterByEmailAddress(filter);
+        IEnumerable<(string FirstName, string LastName)> filteredData = _InitClass.FilterByEmailAddress(filter);
 
 
         //Assert
@@ -141,11 +129,10 @@ public class SampleDataTests
     public void FilterByEmailAddress_GivenContains_ReturnsManyMatching()
     {
         //Arrange
-        SampleData initClass = new();
         Predicate<string> filter = (string email) => email.Contains(".gov");
 
         //Act
-        IEnumerable<(string FirstName, string LastName)> filteredData = initClass.FilterByEmailAddress(filter);
+        IEnumerable<(string FirstName, string LastName)> filteredData = _InitClass.FilterByEmailAddress(filter);
 
 
         //Assert
@@ -159,11 +146,8 @@ public class SampleDataTests
     public void GetAggregateListOfStatesGivenPeopleCollection_GivenPeople_ReturnsListOfStates()
     {
         //Arrange
-        SampleData initClass = new();
-
-        //Act
-        IEnumerable<IPerson> people = initClass.People;
-        string list = initClass.GetAggregateListOfStatesGivenPeopleCollection(people);
+        IEnumerable<IPerson> people = _InitClass.People;
+        string list = _InitClass.GetAggregateListOfStatesGivenPeopleCollection(people);
 
         //Assert
         Assert.AreEqual("AL, AZ, CA, DC, FL, GA, IN, KS, LA, MD, MN, MO, MT, NC, NE, NH, NV, NY, OR, PA, SC, TN, TX, UT, VA, WA, WV", list);
@@ -173,12 +157,9 @@ public class SampleDataTests
     public void GetAggregateListOfStatesGivenPeopleCollection_GivenPeopleAndSortedListOfStates_ReturnsListOfStates()
     {
         //Arrange
-        SampleData initClass = new();
-
-        //Act
-        IEnumerable<IPerson> people = initClass.People;
-        string list = initClass.GetAggregateListOfStatesGivenPeopleCollection(people);
-        string actualString = initClass.GetAggregateSortedListOfStatesUsingCsvRows();
+        IEnumerable<IPerson> people = _InitClass.People;
+        string list = _InitClass.GetAggregateListOfStatesGivenPeopleCollection(people);
+        string actualString = _InitClass.GetAggregateSortedListOfStatesUsingCsvRows();
         
         //Assert
         Assert.AreEqual(actualString, list);
