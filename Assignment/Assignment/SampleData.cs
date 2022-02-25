@@ -1,4 +1,6 @@
-﻿namespace Assignment;
+﻿using System.Net;
+
+namespace Assignment;
 public class SampleData : ISampleData
 {
     // 1.
